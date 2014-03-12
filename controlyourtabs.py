@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Control Your Tabs, a plugin for gedit
+# Control Your Tabs, a plugin for pluma
 # Switch between tabs using Ctrl-Tab / Ctrl-Shift-Tab and
 # Ctrl-PageUp / Ctrl-PageDown
 # v0.1.2
@@ -11,7 +11,7 @@
 # Inspired by:
 #     TabSwitch by Elia Sarti
 #     TabPgUpPgDown by Eran M.
-#     the gEdit Documents panel
+#     the pluma Documents panel
 #
 # Copyright (C) 2010 Jeffery To <jeffery.to@gmail.com>
 # https://github.com/jefferyto/gedit-control-your-tabs
@@ -29,7 +29,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import gedit
+import pluma
 import glib
 import gtk
 import gio
@@ -54,17 +54,17 @@ class ControlYourTabsWindowHelper:
 	MAX_TAB_WINDOW_HEIGHT = 250
 
 	TAB_STATE_TO_ICON = {
-		gedit.TAB_STATE_LOADING: gtk.STOCK_OPEN,
-		gedit.TAB_STATE_REVERTING: gtk.STOCK_REVERT_TO_SAVED,
-		gedit.TAB_STATE_SAVING: gtk.STOCK_SAVE,
-		gedit.TAB_STATE_PRINTING: gtk.STOCK_PRINT,
-		gedit.TAB_STATE_PRINT_PREVIEWING: gtk.STOCK_PRINT_PREVIEW,
-		gedit.TAB_STATE_SHOWING_PRINT_PREVIEW: gtk.STOCK_PRINT_PREVIEW,
-		gedit.TAB_STATE_LOADING_ERROR: gtk.STOCK_DIALOG_ERROR,
-		gedit.TAB_STATE_REVERTING_ERROR: gtk.STOCK_DIALOG_ERROR,
-		gedit.TAB_STATE_SAVING_ERROR: gtk.STOCK_DIALOG_ERROR,
-		gedit.TAB_STATE_GENERIC_ERROR: gtk.STOCK_DIALOG_ERROR,
-		gedit.TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION: gtk.STOCK_DIALOG_WARNING
+		pluma.TAB_STATE_LOADING: gtk.STOCK_OPEN,
+		pluma.TAB_STATE_REVERTING: gtk.STOCK_REVERT_TO_SAVED,
+		pluma.TAB_STATE_SAVING: gtk.STOCK_SAVE,
+		pluma.TAB_STATE_PRINTING: gtk.STOCK_PRINT,
+		pluma.TAB_STATE_PRINT_PREVIEWING: gtk.STOCK_PRINT_PREVIEW,
+		pluma.TAB_STATE_SHOWING_PRINT_PREVIEW: gtk.STOCK_PRINT_PREVIEW,
+		pluma.TAB_STATE_LOADING_ERROR: gtk.STOCK_DIALOG_ERROR,
+		pluma.TAB_STATE_REVERTING_ERROR: gtk.STOCK_DIALOG_ERROR,
+		pluma.TAB_STATE_SAVING_ERROR: gtk.STOCK_DIALOG_ERROR,
+		pluma.TAB_STATE_GENERIC_ERROR: gtk.STOCK_DIALOG_ERROR,
+		pluma.TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION: gtk.STOCK_DIALOG_WARNING
 	}
 
 	def __init__(self, plugin, window):
@@ -87,7 +87,7 @@ class ControlYourTabsWindowHelper:
 
 		tabwin.add(sw)
 
-		model = gtk.ListStore(gtk.gdk.Pixbuf, str, gedit.Tab, 'gboolean')
+		model = gtk.ListStore(gtk.gdk.Pixbuf, str, pluma.Tab, 'gboolean')
 
 		view = gtk.TreeView(model)
 		view.set_enable_search(False)
@@ -335,7 +335,7 @@ class ControlYourTabsWindowHelper:
 
 			obj.set_data(self.HANDLER_IDS, None)
 
-	# following functions taken from gedit
+	# following functions taken from pluma
 
 	def str_middle_truncate(self, string, truncate_length):
 		return self.str_truncate(string, truncate_length, True)
@@ -422,9 +422,9 @@ class ControlYourTabsWindowHelper:
 
 		return pixbuf
 
-class ControlYourTabsPlugin(gedit.Plugin):
+class ControlYourTabsPlugin(pluma.Plugin):
 	def __init__(self):
-		gedit.Plugin.__init__(self)
+		pluma.Plugin.__init__(self)
 		self._instances = {}
 
 	def activate(self, window):

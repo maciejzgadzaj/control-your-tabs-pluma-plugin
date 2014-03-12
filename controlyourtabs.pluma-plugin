@@ -1,4 +1,4 @@
-[Gedit Plugin]
+[Pluma Plugin]
 Loader=python
 Module=controlyourtabs
 IAge=2
